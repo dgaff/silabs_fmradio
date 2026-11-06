@@ -1,6 +1,12 @@
 # FM Radio for macOS
 
-A native macOS player for the Silicon Labs USB FM Radio reference design (VID:PID `10C4:818A`, Si470x tuner and C8051F321 USB MCU). It replaces the Windows-only "Silicon Labs USB Radio" app. No driver or kext is needed: control runs over HID feature reports and audio over the standard USB Audio Class input.
+<a href="https://www.buymeacoffee.com/douggaff" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+This is a native macOS player for the Silicon Labs USB FM Radio reference design (VID:PID `10C4:818A`, Si470x tuner and C8051F321 USB MCU). This reference USB demo board is probably from the 2010s, but if you still have one around, and you want it to work on Mac, this the solution for you. It replaces the Windows-only "Silicon Labs USB Radio" app. (See the docs folder for screen images of that.) Control runs over HID feature reports and audio over the standard USB Audio Class input and was reverse-engineered from the Linux driver for this chipset.
+
+![Radio Player App](radioplayer.png)
+
+![usb radio](usbradio.jpeg)
 
 **Features:** play/pause, tune, step, seek, scan, 12 presets, signal and stereo indicators, RDS/RBDS (station name, RadioText, program type, call letters, TP, clock time), volume and mute, and a menu bar extra. Settings cover band, spacing, de-emphasis, seek threshold, force mono, scan time, mute on startup and the RadioText A/B flag. The app handles hot-plug and sleep/wake, and powers the tuner down on quit.
 
