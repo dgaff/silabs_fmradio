@@ -20,6 +20,7 @@ There are two example screens from the windows app for inspiration: windows_play
 The probe script is the reference implementation. Port its logic to Swift.
 
 ## Hardware
+
 | Item | Value |
 |---|---|
 | USB VID:PID | `0x10C4:0x818A` ("FM Radio", Silicon Laboratories) |
@@ -45,6 +46,7 @@ All control goes over endpoint 0 as HID GET_REPORT / SET_REPORT. The first byte 
 The Linux driver sends wValue = report ID with a type byte of 0 and wIndex = 2. macOS IOHID sends a Feature type (0x03xx), and the firmware accepted it in the probe.
 
 ## Si470x registers used
+
 | Addr | Name | Bits of interest |
 |---|---|---|
 | 0x00 | DEVICEID | PN[15:12], MFGID[11:0] = 0x242 |
