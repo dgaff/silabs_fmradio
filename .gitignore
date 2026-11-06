@@ -1,0 +1,7 @@
+.build/
+build/
+venv/
+.swiftpm/
+*.xcodeproj/xcuserdata/
+.DS_Store
+.recall/
