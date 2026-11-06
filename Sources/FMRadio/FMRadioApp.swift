@@ -65,6 +65,7 @@ struct RadioCommands: Commands {
             Button("Scan") { radio.toggleScan() }
                 .keyboardShortcut("s", modifiers: [.command, .shift])
             Divider()
+            Button("Play / Pause") { radio.togglePlayPause() }
             Button("Mute / Unmute") { radio.muted.toggle() }
                 .keyboardShortcut("m", modifiers: [.command, .shift])
             Button("Volume Up") { radio.volume = min(1, radio.volume + 0.1) }

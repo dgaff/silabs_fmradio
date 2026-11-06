@@ -15,6 +15,7 @@ struct MenuBarContent: View {
             Text("Radio not connected")
         }
         Divider()
+        Button(radio.isPlaying ? "Pause" : "Play") { radio.togglePlayPause() }
         Button(radio.muted ? "Unmute" : "Mute") { radio.muted.toggle() }
         Button("Seek Up") { radio.seek(up: true) }.disabled(!radio.isConnected)
         Button("Seek Down") { radio.seek(up: false) }.disabled(!radio.isConnected)
@@ -44,6 +45,6 @@ struct MenuBarLabel: View {
     @Environment(RadioController.self) private var radio
 
     var body: some View {
-        Image(systemName: radio.muted ? "radio" : "radio.fill")
+        Image(systemName: radio.muted || !radio.isPlaying ? "radio" : "radio.fill")
     }
 }

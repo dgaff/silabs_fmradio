@@ -2,7 +2,7 @@
 
 A native macOS player for the Silicon Labs USB FM Radio reference design (VID:PID `10C4:818A`, Si470x tuner and C8051F321 USB MCU). It replaces the Windows-only "Silicon Labs USB Radio" app. No driver or kext is needed: control runs over HID feature reports and audio over the standard USB Audio Class input.
 
-**Features:** tune, step, seek, scan, 12 presets, signal and stereo indicators, RDS/RBDS (station name, RadioText, program type, call letters, TP, clock time), volume and mute, and a menu bar extra. Settings cover band, spacing, de-emphasis, seek threshold, force mono, scan time, mute on startup and the RadioText A/B flag. The app handles hot-plug and sleep/wake, and powers the tuner down on quit.
+**Features:** play/pause, tune, step, seek, scan, 12 presets, signal and stereo indicators, RDS/RBDS (station name, RadioText, program type, call letters, TP, clock time), volume and mute, and a menu bar extra. Settings cover band, spacing, de-emphasis, seek threshold, force mono, scan time, mute on startup and the RadioText A/B flag. The app handles hot-plug and sleep/wake, and powers the tuner down on quit.
 
 ## Build and run
 
@@ -22,6 +22,7 @@ You can also open `Package.swift` in Xcode. Running the `FMRadio` scheme from Xc
 
 | Action | Keys |
 |---|---|
+| Play / pause | Space |
 | Step down / up | ⌘← / ⌘→ |
 | Seek down / up | ⌥⌘← / ⌥⌘→ |
 | Scan | ⇧⌘S |

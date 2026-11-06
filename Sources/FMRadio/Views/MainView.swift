@@ -98,7 +98,10 @@ private struct ActivityLabel: View {
         switch radio.activity {
         case .seeking: Label("Seeking…", systemImage: "magnifyingglass").foregroundStyle(.secondary)
         case .scanning: Label("Scanning…", systemImage: "dot.radiowaves.right").foregroundStyle(.tint)
-        case .tuning, .idle: EmptyView()
+        case .tuning, .idle:
+            if !radio.isPlaying {
+                Label("Paused", systemImage: "pause.fill").foregroundStyle(.secondary)
+            }
         }
     }
 }
@@ -141,6 +144,14 @@ private struct TransportControls: View {
     var body: some View {
         @Bindable var radio = radio
         HStack(spacing: 8) {
+            Button { radio.togglePlayPause() } label: {
+                Image(systemName: radio.isPlaying ? "pause.fill" : "play.fill")
+                    .frame(width: 22)
+            }
+            .controlSize(.large)
+            .keyboardShortcut(.space, modifiers: [])
+            .help(radio.isPlaying ? "Pause (Space)" : "Play (Space)")
+
             ControlGroup {
                 Button { radio.seek(up: false) } label: { Image(systemName: "backward.end.fill") }
                     .help("Seek down (⌥⌘←)")
@@ -242,7 +253,10 @@ private struct StatusFooter: View {
         HStack(spacing: 6) {
             Circle().fill(color).frame(width: 7, height: 7)
             Text(connectionText)
-            if radio.microphoneDenied {
+            if !radio.isPlaying {
+                Text("·")
+                Text("Paused")
+            } else if radio.microphoneDenied {
                 Text("·")
                 Button("Allow audio input…") { radio.openMicrophoneSettings() }
                     .buttonStyle(.link)

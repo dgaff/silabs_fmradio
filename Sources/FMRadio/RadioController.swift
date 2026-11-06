@@ -32,6 +32,9 @@ final class RadioController {
     private(set) var rds = RDSState()
     private(set) var audioState: RadioAudio.State = .stopped
     private(set) var microphoneDenied = false
+    /// False while the user has paused playback. Pausing stops the audio pipeline entirely
+    /// (unlike mute, which keeps it running at zero gain); the tuner stays on.
+    private(set) var isPlaying = true
     private(set) var lastError: String?
 
     var volume: Double {
@@ -180,7 +183,7 @@ final class RadioController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
             guard let self else { return }
             if self.device != nil { self.initializeChip() }
-            self.startAudio()
+            if self.isPlaying { self.startAudio() }
         }
     }
 
@@ -202,6 +205,23 @@ final class RadioController {
         default:
             microphoneDenied = true
         }
+    }
+
+    func togglePlayPause() {
+        if isPlaying { pause() } else { play() }
+    }
+
+    func play() {
+        guard !isPlaying else { return }
+        isPlaying = true
+        startAudio()
+    }
+
+    func pause() {
+        guard isPlaying else { return }
+        stopScan()
+        isPlaying = false
+        audio.stop()
     }
 
     func openMicrophoneSettings() {
